@@ -6,4 +6,15 @@ const getAllchannelsAPI = () => {
     url: '/v1_0/channels'
   })
 }
-export { getAllchannelsAPI }
+// 登录界面Api
+const loginAPI = ({ mobile, code }) => {
+  return axios({
+    url: '/v1_0/authorizations',
+    method: 'POST',
+    data: {
+      mobile,
+      code
+    }
+  })
+}
+export { getAllchannelsAPI, loginAPI }
