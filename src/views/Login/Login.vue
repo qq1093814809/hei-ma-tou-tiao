@@ -65,6 +65,7 @@ export default {
         console.log(res.data.token)
         Notify({ type: 'success', message: '登录成功' })
         setToken(res.data.token)
+        this.$router.replace('/layout')
       } catch (err) {
         Notify({ type: 'danger', message: '账号或密码错误' })
         console.dir(err)
