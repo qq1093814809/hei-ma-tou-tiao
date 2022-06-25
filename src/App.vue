@@ -1,18 +1,36 @@
 <template>
   <div>
-    <h1>APP</h1>
+    <router-view></router-view>
   </div>
 </template>
 <script>
+import { getAllchannelsAPI } from '@/api/index'
 export default {
   name: 'app',
   data() {
-    return {}
+    return {
+      list: []
+    }
   },
-  methods: {},
+  methods: {
+    async add() {
+      try {
+        const {
+          data: {
+            data: { channels: res }
+          }
+        } = await getAllchannelsAPI()
+        this.list = res
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
   computed: {},
   watch: {},
-  created() {}
+  created() {
+    this.add()
+  }
 }
 </script>
 <style lang="less" scoped></style>
