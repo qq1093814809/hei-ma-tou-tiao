@@ -1,5 +1,15 @@
 import axios from '@/utils/request'
-
+// 获取文章列表的api
+// eslint-disable-next-line camelcase
+const getArticleListAPI = (channel_id, timestamp) => {
+  return axios({
+    url: '/v1_0/articles',
+    params: {
+      channel_id,
+      timestamp
+    }
+  })
+}
 // 获取频道的api
 const getAllchannelsAPI = () => {
   return axios({
@@ -17,4 +27,4 @@ const loginAPI = ({ mobile, code }) => {
     }
   })
 }
-export { getAllchannelsAPI, loginAPI }
+export { getAllchannelsAPI, loginAPI, getArticleListAPI }

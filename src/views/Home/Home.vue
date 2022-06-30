@@ -9,18 +9,25 @@
       </template>
     </van-nav-bar>
     <van-tabs v-model="active" swipeable sticky offset-top="48px">
-      <van-tab v-for="item in list" :key="item.id" :title="item.name"> 内容 {{ item.id }} </van-tab>
+      <van-tab v-for="item in list" :key="item.id" :title="item.name">
+        <Article></Article>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
 <script>
-import { getAllchannelsAPI } from '@/api/index'
+import Article from './components/Article.vue'
+import { getAllchannelsAPI, getArticleListAPI } from '@/api/index'
 export default {
   name: 'home',
+  components: {
+    Article
+  },
   data() {
     return {
       active: 0,
-      list: []
+      list: [],
+      ArticleList: []
     }
   },
   methods: {
@@ -35,12 +42,18 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    // 请求文章数据的方法
+    async articleList() {
+      this.ArticleList = await (await getArticleListAPI(1, +new Date())).data.data.results
+      this.$bus.$emit('articleList', this.ArticleList)
     }
   },
   computed: {},
   watch: {},
   created() {
     this.add()
+    this.articleList()
   }
 }
 </script>
