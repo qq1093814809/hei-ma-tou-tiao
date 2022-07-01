@@ -1,10 +1,17 @@
 <template>
   <div class="article-item-container">
-    <p>{{ title }}</p>
+    <div>
+      <p>{{ title }}</p>
+      <div class="img1"><img :src="cover.images[0]" alt="" v-if="cover.images.length < 3" /></div>
+    </div>
     <div class="sing">
       <span>{{ name }}</span>
       <span>评论{{ comm_count }}</span>
       <span>{{ pubdate }}</span>
+    </div>
+
+    <div class="imgs" v-if="cover.images.length == 3">
+      <img v-for="(item, index) in cover.images" :src="item" :key="index" />
     </div>
   </div>
 </template>
@@ -27,6 +34,12 @@ export default {
     pubdate: {
       type: String,
       default: '未知时间'
+    },
+    cover: {
+      type: Object,
+      default() {
+        return {}
+      }
     }
   },
   data() {
@@ -49,6 +62,14 @@ export default {
     span {
       margin-right: 15px;
     }
+  }
+  .img1 {
+  }
+
+  img {
+    width: 100px;
+    height: 70px;
+    margin-right: 7px;
   }
 }
 </style>

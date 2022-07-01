@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import { getAllchannelsAPI } from '@/api/index'
 export default {
   name: 'app',
   data() {
@@ -12,25 +11,10 @@ export default {
       list: []
     }
   },
-  methods: {
-    async add() {
-      try {
-        const {
-          data: {
-            data: { channels: res }
-          }
-        } = await getAllchannelsAPI()
-        this.list = res
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  },
+  methods: {},
   computed: {},
   watch: {},
-  created() {
-    this.add()
-  }
+  created() {}
 }
 </script>
 <style lang="less" scoped></style>

@@ -7,6 +7,7 @@
       :comm_count="item.comm_count"
       :title="item.title"
       :pubdate="item.pubdate"
+      :cover="item.cover"
     ></ArticleItem>
   </div>
 </template>
@@ -14,19 +15,18 @@
 import ArticleItem from './ArticleItem.vue'
 export default {
   components: { ArticleItem },
-  data() {
-    return {
-      ArticleList: []
+  props: {
+    ArticleList: {
+      type: Array,
+      default() {
+        return []
+      }
     }
   },
+
   methods: {},
   computed: {},
-  watch: {},
-  created() {
-    this.$bus.$on('articleList', (value) => {
-      this.ArticleList = value
-    })
-  }
+  watch: {}
 }
 </script>
 <style lang="less" scoped></style>

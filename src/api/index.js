@@ -1,7 +1,8 @@
 import axios from '@/utils/request'
+import { getToken } from '@/utils/token'
 // 获取文章列表的api
-// eslint-disable-next-line camelcase
-const getArticleListAPI = (channel_id, timestamp) => {
+
+const getArticleListAPI = ({ channel_id, timestamp }) => {
   return axios({
     url: '/v1_0/articles',
     params: {
@@ -10,10 +11,13 @@ const getArticleListAPI = (channel_id, timestamp) => {
     }
   })
 }
-// 获取频道的api
+// 获取用户频道的api
 const getAllchannelsAPI = () => {
   return axios({
-    url: '/v1_0/channels'
+    url: '/v1_0/user/channels',
+    headers: {
+      Authorization: `Bearer ${getToken()}`
+    }
   })
 }
 // 登录界面Api
